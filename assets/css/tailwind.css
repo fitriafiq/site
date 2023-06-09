@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .text-shadow-dark {
+        text-shadow: 0 0 5px #ffffff8c;
+    }
+    .text-shadow {
+        text-shadow: 0 0 5px #0000008c;
+    }
+    .transform-translatez-0 {
+        -webkit-transform: translateZ(0);
+        transform: translateZ(0);
+    }
+    .cursor-inner-transition {
+        -webkit-transition: width 1s ease-in-out, height 1s ease-in-out, margin 1s ease-in-out, opacity 1s ease-in-out;
+        transition: width 1s ease-in-out, height 1s ease-in-out, margin 1s ease-in-out, opacity 1s ease-in-out;
+    }
+    .cursor-outer-transition {
+        -webkit-box-sizing: border-box;
+        -webkit-transition: all 0.08s ease-out;
+    }
+    .hamburger-menu-before {
+        transition: bottom 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .hamburger-menu-after {
+        transition: top 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .nav-item-transition {
+        transition: opacity 0.2s ease, transform 0.3s ease;
+    }
+}
+
+@layer base {
+    html {
+        font-family: 'Montserrat', system-ui, sans-serif;
+        @apply cursor-none overflow-x-hidden scroll-smooth;
+    }
+    
+    body {
+        @apply overflow-hidden text-black dark:text-white bg-[#fdfdfd] dark:bg-[#191C22] transition-colors duration-500;
+    }
+    
+    h1 {
+        @apply text-5xl md:text-6xl font-bold;
+    }
+    
+    h2 {
+        @apply text-3xl md:text-4xl font-semibold leading-relaxed;
+    }
+    
+    h3 {
+        @apply text-xl md:text-2xl font-medium leading-relaxed;
+    }
+    
+    h4 {
+        @apply text-lg md:text-xl font-medium leading-relaxed;
+    }
+    
+    h5 {
+        @apply text-sm font-medium leading-relaxed;
+    }
+    
+    h6 {
+        @apply text-xs leading-relaxed uppercase;
+    }
+    
+    button, .btn {
+        @apply tracking-[4px] text-xs border outline-1 outline outline-[#000] dark:outline-[#ffffff1a] outline-offset-0 transition-all duration-[1250ms] ease-[cubic-bezier(0.19,1,0.22,1)] px-6 md:px-10 py-3 border-solid border-[#0000001a] dark:border-[#ffffff1a];
+    }
+    
+    button:hover, .btn:hover {
+        @apply border border-black dark:border-white shadow-[inset_0_0_20px_#00000048,0_0_20px_#00000048] dark:shadow-[inset_0_0_20px_#ffffff80,0_0_20px_#ffffff33] outline-[#0000001a] dark:outline-[#ffffff1a] outline-offset-[15px] border-solid;
+    }
+    
+    .service:hover .icon, .workflow:hover .icon {
+        @apply shadow-[inset_0_0_20px_#00000048,0_0_20px_#00000048] dark:shadow-[inset_0_0_20px_#ffffff80,0_0_20px_#ffffff33] outline-[#0000001a] dark:outline-[#ffffff1a] outline-offset-[15px];
+    }
+    
+    *::-webkit-scrollbar {
+        @apply w-2 h-[3px];
+    }
+    
+    *::-webkit-scrollbar-track {
+        @apply bg-[#353535];
+    }
+    
+    *::-webkit-scrollbar-thumb {
+        @apply bg-[#707070] rounded-[20px];
+    }
+    
+    ::selection {
+        @apply text-black bg-white;
+    }
+    
+    .cursor-inner.cursor-hover {
+        @apply w-20 h-20 bg-black dark:bg-white opacity-30 -ml-10 -mt-10 transition-all duration-200 ease-out;
+    }
+    
+    .cursor-outer.cursor-hover {
+        @apply opacity-0 transition-all duration-200 ease-out;
+    }
+    
+    .hamburger-menu.animate {
+        @apply bg-transparent dark:bg-transparent;
+    }
+    
+    .hamburger-menu.animate:after {
+        transition: top 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+        @apply rotate-45 top-0;
+    }
+    
+    .hamburger-menu.animate:before {
+        transition: bottom 300ms cubic-bezier(0.23, 1, 0.32, 1), transform 300ms 300ms cubic-bezier(0.23, 1, 0.32, 1);
+        @apply -rotate-45 bottom-0;
+    }
+    
+    body.nav-active .nav {
+        @apply z-10 visible;
+    }
+    
+    body.nav-active .nav:before, body.nav-active .nav:after {
+        @apply translate-y-0;
+    }
+    
+    body.nav-active .nav:after {
+        @apply delay-100;
+    }
+    
+    body.nav-active .nav:before {
+        @apply delay-0;
+    }
+    
+    body.nav-active .nav-item {
+        @apply opacity-100 transition-all duration-300 z-10;
+        transform: translateX(0%);
+    }
+    
+    body.nav-active .nav-item:nth-child(1) {
+        @apply delay-[0.5s];
+    }
+    
+    body.nav-active .nav-item:nth-child(2) {
+        @apply delay-[0.6s];
+    }
+    
+    body.nav-active .nav-item:nth-child(3) {
+        @apply delay-[0.7s];
+    }
+    
+    body.nav-active .nav-item:nth-child(4) {
+        @apply delay-[0.8s];
+    }
+    
+    .transition-layer.active {
+        @apply -left-full;
+    }
+    
+    .nav {
+        transition: 1s ease z-index;
+    }
+}
+
