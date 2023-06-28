@@ -103,7 +103,7 @@
 
 <script setup>
 useHead({
-    title: 'Fitri Afiq | My Work',
+    title: 'My Work - Fitri Afiq',
 })
 
 const emit = defineEmits([

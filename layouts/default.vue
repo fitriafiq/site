@@ -1,7 +1,7 @@
 <template>
     <TheHeader />
     <NuxtPage />
-    <ContactCTA v-if="$route.name != 'contact'"/>
+    <ContactCTA v-if="$route.name != 'contact'" />
     <TheFooter />
 
     <Teleport to="body">
@@ -51,5 +51,30 @@ onMounted(() => {
     inner.value.style.visibility = "visible"
 
     settings.initializeColorMode()
+})
+
+useHead({
+    script: [
+        {
+            children: `
+            if (!('theme' in localStorage)) {
+                if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    localStorage.setItem('theme', 'dark')
+                    document.documentElement.classList.add('dark')
+                } else {
+                    localStorage.setItem('theme', 'light')
+                    document.documentElement.classList.remove('dark')
+                }
+            } else {
+                if (localStorage.theme == 'dark') {
+                    document.documentElement.classList.add('dark')
+                } else {
+                    document.documentElement.classList.remove('dark')
+                   
+                }
+            }
+            `
+        }
+    ]
 })
 </script>

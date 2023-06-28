@@ -16,7 +16,8 @@
   },
   "dependencies": {
     "@pinia/nuxt": "^0.4.9",
-    "aos": "^2.3.4"
+    "aos": "^2.3.4",
+    "nodemailer": "^6.9.3"
   },
   "overrides": {
     "vue": "latest"

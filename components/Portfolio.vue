@@ -5,21 +5,20 @@
             data-aos="fade-up" data-aos-duration="1000" class="border border-[#3a3a3a] relative"
             :class="props.layout == 'full' ? 'md:grid grid-cols-5' : ''">
             <div class="relative" :class="[props.layout == 'full' ? 'col-span-3' : '', index % 2 != 0 ? 'order-2' : '']">
-                <img :src="project.image">
+                <img :src="config.public.BASE_URL + project.attributes.hero.data.attributes.url">
                 <div class="flex flex-row gap-3 py-1 pe-2 bg-[#191C22]/25 absolute bottom-0 right-0 w-full"
                     :class="[props.layout == 'full' && index % 2 != 0 ? 'justify-end pe-2' : (props.layout == 'full' && index % 2 == 0 ? 'justify-end md:justify-start ps-2' : 'justify-end pe-2')]">
-                    <template v-for="tech in project.tech">
-                        <div class="w-7 basis-auto" v-html="getExpertise(tech).logo_dark"></div>
+                    <template v-for="tech in project.attributes.toolboxes.data">
+                        <div class="w-7 basis-auto" v-html="tech.attributes.logo_dark"></div>
                     </template>
                 </div>
             </div>
-
             <div class="flex flex-col justify-between p-7 text-start" :class="props.layout == 'full' ? 'col-span-2' : ''">
                 <div class="mb-20">
-                    <h3 class="mb-2">{{ project.name }}</h3>
-                    <p class="text-sm">{{ project.excerpt }}</p>
+                    <h3 class="mb-2">{{ project.attributes.name }}</h3>
+                    <p class="text-sm">{{ project.attributes.excerpt }}</p>
                 </div>
-                <NuxtLink @click="settings.toggleReveal('/work/' + project.slug, useRouter())" class="btn w-fit"
+                <NuxtLink @click="settings.toggleReveal('/work/' + project.attributes.slug, useRouter())" class="btn w-fit"
                     :class="props.layout == 'half' ? 'absolute bottom-7 left-0 ms-7' : ''">
                     MORE DETAILS
                 </NuxtLink>
@@ -35,11 +34,9 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia'
-import { usePortfolio } from '@/stores/Portfolio'
-import { useToolbox } from '@/stores/Toolbox'
 import { useSettings } from '@/stores/Settings'
 
+const config = useRuntimeConfig()
 const settings = useSettings()
 
 const props = defineProps({
@@ -57,27 +54,22 @@ const props = defineProps({
     },
 })
 
-const portfolio = usePortfolio()
-const { getOtherProjects } = storeToRefs(portfolio)
-const otherProjects = ref(getOtherProjects.value(props.slug))
+const { data: portfolio } = await useFetch(`${config.public.BASE_URL}/api/portfolios?fields=*&populate[hero][fields]=url&populate=toolboxes&populate[gallery][fields]=url`, {
+    headers: {
+        Authorization: `Bearer ${config.public.API_TOKEN}`
+    }
+})
 
-const toolbox = useToolbox()
-const { getExpertise } = storeToRefs(toolbox)
+portfolio.value.data.sort((a, b) => a.id < b.id ? 1 : -1)
 
-const projectsPerPage = 4;
-const projectListCount = ref(projectsPerPage);
+const projectsPerPage = 4
+const projectListCount = ref(projectsPerPage)
 
-const projectList = computed(() => {
-    return portfolio.getProjects.slice(0, projectListCount.value);
-});
+const projectList = computed(() => portfolio.value.data.sort((a, b) => a.id < b.id ? 1 : -1).slice(0, projectListCount.value))
+const otherProjects = computed(() => portfolio.value.data.filter((project) => project.attributes.slug != props.slug))
+const showMoreButtonVisible = computed(() => projectListCount.value < portfolio.value.data.length)
 
-const showMoreButtonVisible = computed(() => {
-    return projectListCount.value < portfolio.getProjects.length;
-});
-
-const showMoreProjects = () => {
-    projectListCount.value += projectsPerPage;
-};
+const showMoreProjects = () => projectListCount.value += projectsPerPage
 </script>
 
 <style scoped>
