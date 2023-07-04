@@ -20,7 +20,7 @@
 
     <GridThreeQuarters id="overview">
         <h6 data-aos="fade-right" data-aos-duration="1000"
-            class="text-gray-900 dark:text-gray-400 text-[11px] font-thin tracking-[.4em]">/
+            class="text-gray-900 dark:text-gray-400 text-[11px] tracking-[.4em]">/
             Overview</h6>
         <div class="col-span-3">
             <div data-aos="fade-left" data-aos-duration="1000">
@@ -31,7 +31,7 @@
 
     <GridFull id="showcase" :wide="true">
         <h6 data-aos="fade-down" data-aos-duration="1000"
-            class="text-gray-900 dark:text-gray-400 text-[11px] font-thin tracking-[.4em] mb-16">
+            class="text-gray-900 dark:text-gray-400 text-[11px] tracking-[.4em] mb-16">
             /
             SHOWCASE</h6>
         <div v-for="(image, index) in project.data[0].attributes.gallery.data">
@@ -53,7 +53,7 @@
 
     <GridThreeQuarters id="tech">
         <h6 data-aos="fade-right" data-aos-duration="1000"
-            class="text-gray-900 dark:text-gray-400 text-[11px] font-thin tracking-[.4em]">/
+            class="text-gray-900 dark:text-gray-400 text-[11px] tracking-[.4em]">/
             Tech</h6>
         <div class="col-span-3">
             <div class="grid grid-cols-2 md:grid-cols-5 gap-10">
@@ -71,7 +71,7 @@
 
     <GridFull id="others">
         <h6 data-aos="fade-down" data-aos-duration="1000"
-            class="text-gray-900 dark:text-gray-400 text-[11px] font-thin tracking-[.4em] mb-16">
+            class="text-gray-900 dark:text-gray-400 text-[11px] tracking-[.4em] mb-16">
             /
             OTHERS</h6>
         <Portfolio layout="one-third" :slug="slug" />

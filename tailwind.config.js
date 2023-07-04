@@ -3,7 +3,9 @@ module.exports = {
     content: [],
     darkMode: 'class',
     theme: {
-        extend: {},
+        fontFamily: {
+            sans: ['Montserrat', 'sans-serif'],
+        },
         screens: {
             'sm': '540px',
             'md': '720px',

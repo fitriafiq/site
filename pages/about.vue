@@ -14,7 +14,7 @@
 
     <GridThreeQuarters id="story">
         <h6 data-aos="fade-right" data-aos-duration="1000"
-            class="text-gray-900 dark:text-gray-400 text-[11px] font-thin tracking-[.4em]">/
+            class="text-gray-900 dark:text-gray-400 text-[11px] tracking-[.4em]">/
             STORY</h6>
         <div class="col-span-3">
             <h2 data-aos="fade-left" data-aos-duration="1000"
@@ -61,7 +61,7 @@
 
     <GridFull id="motto" class="bg-[#f0f0f0] dark:bg-[#12151A]">
         <h6 data-aos="fade-down" data-aos-duration="1000"
-            class="text-gray-900 dark:text-gray-400 text-[11px] font-thin tracking-[.4em]">/
+            class="text-gray-900 dark:text-gray-400 text-[11px] tracking-[.4em]">/
             MOTTO</h6>
         <h2 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200"
             class="mt-10 md:mt-16 md:px-64 leading-10 md:leading-normal mx-auto">The only way to do great
@@ -73,7 +73,7 @@
 
     <GridThreeQuarters id="toolbox">
         <h6 data-aos="fade-right" data-aos-duration="1000"
-            class="text-gray-900 dark:text-gray-400 text-[11px] font-thin tracking-[.4em]">/
+            class="text-gray-900 dark:text-gray-400 text-[11px] tracking-[.4em]">/
             TOOLBOX</h6>
         <div class="col-span-3">
             <h2 data-aos="fade-left" data-aos-duration="1000"
