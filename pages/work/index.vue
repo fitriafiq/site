@@ -11,7 +11,7 @@
     </Hero>
 
     <GridThreeQuarters id="portfolio">
-        <h6 data-aos="fade-right" data-aos-duration="1000" class="text-gray-900 dark:text-gray-400 text-[11px] font-thin tracking-[.4em]">/
+        <h6 data-aos="fade-right" data-aos-duration="1000" class="text-gray-900 dark:text-gray-400 text-[11px] tracking-[.4em]">/
             PORTFOLIO
         </h6>
         <div class="col-span-3">
@@ -24,7 +24,7 @@
     </GridThreeQuarters>
 
     <GridThreeQuarters id="workflow">
-        <h6 data-aos="fade-right" data-aos-duration="1000" class="text-gray-900 dark:text-gray-400 text-[11px] font-thin tracking-[.4em]">/
+        <h6 data-aos="fade-right" data-aos-duration="1000" class="text-gray-900 dark:text-gray-400 text-[11px] tracking-[.4em]">/
             WORKFLOW</h6>
         <div class="col-span-3">
             <h2 data-aos="fade-left" data-aos-duration="1000" class="mt-8 md:mt-0 mb-2 md:mb-1 leading-10 md:leading-normal">Navigating from idea to reality.</h2>
@@ -103,7 +103,7 @@
 
 <script setup>
 useHead({
-    title: 'Fitri Afiq | My Work',
+    title: 'My Work - Fitri Afiq',
 })
 
 const emit = defineEmits([

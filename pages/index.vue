@@ -12,7 +12,7 @@
     <GridHalf id="about">
         <div class="md:pe-16 my-auto">
             <h6 data-aos="fade-right" data-aos-duration="1000"
-                class="text-gray-900 dark:text-gray-400 text-[11px] font-thin tracking-[.4em]">/
+                class="text-gray-900 dark:text-gray-400 text-[11px] tracking-[.4em]">/
                 ABOUT ME</h6>
             <video data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" class="block md:hidden my-8" autoplay
                 loop playsinline muted :src="colorMode == 'dark' ? greetingDarkPath : greetingLightPath"></video>
@@ -37,7 +37,7 @@
 
     <GridThreeQuarters>
         <h6 data-aos="fade-right" data-aos-duration="1000"
-            class="text-gray-900 dark:text-gray-400 text-[11px] font-thin tracking-[.4em]">/
+            class="text-gray-900 dark:text-gray-400 text-[11px] tracking-[.4em]">/
             SERVICES</h6>
         <div class="col-span-3">
             <h2 data-aos="fade-left" data-aos-duration="1000"
@@ -92,7 +92,7 @@
 
     <GridThreeQuarters id="portfolio">
         <h6 data-aos="fade-right" data-aos-duration="1000"
-            class="text-gray-900 dark:text-gray-400 text-[11px] font-thin tracking-[.4em]">/
+            class="text-gray-900 dark:text-gray-400 text-[11px] tracking-[.4em]">/
             PORTFOLIO
         </h6>
         <div class="col-span-3">

@@ -13,15 +13,19 @@
     </Hero>
 
     <GridThreeQuarters id="story">
-        <h6 data-aos="fade-right" data-aos-duration="1000" class="text-gray-900 dark:text-gray-400 text-[11px] font-thin tracking-[.4em]">/
+        <h6 data-aos="fade-right" data-aos-duration="1000"
+            class="text-gray-900 dark:text-gray-400 text-[11px] tracking-[.4em]">/
             STORY</h6>
         <div class="col-span-3">
-            <h2 data-aos="fade-left" data-aos-duration="1000" class="mt-8 md:mt-0 mb-2 md:mb-1 leading-10 md:leading-normal">Meet the coding geek.</h2>
-            <p data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200" class="mb-10 text-gray-600 dark:text-gray-400">
+            <h2 data-aos="fade-left" data-aos-duration="1000"
+                class="mt-8 md:mt-0 mb-2 md:mb-1 leading-10 md:leading-normal">Meet the coding geek.</h2>
+            <p data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200"
+                class="mb-10 text-gray-600 dark:text-gray-400">
                 Pronunciation: FIT-ree AH-feek</p>
             <div data-aos="fade-left" data-aos-duration="1000" data-aos-delay="400">
                 <p class="mb-6">Heyya! I'm Fitri, a full-stack web developer based in Malaysia.
-                    Currently, I'm part of <a class="font-bold italic text-shadow dark:text-shadow-dark" href="https://gravitas.my/" target="_blank">Gravitas
+                    Currently, I'm part of <a class="font-bold italic text-shadow dark:text-shadow-dark"
+                        href="https://gravitas.my/" target="_blank">Gravitas
                         Digital</a> as a senior web developer. I've been tinkering with code and
                     building websites for as long as I can remember, and I love using my skills to bring ideas to life and
                     solve
@@ -43,7 +47,8 @@
                     my normal working hours, and during weekends. I am always eager to take on new challenges and expand my
                     skill set, which is why I am open to collaborating on exciting freelance projects.</p>
                 <p>If you're looking for a dedicated web developer who can bring your ideas to life, let's connect! You can
-                    <NuxtLink @click="settings.toggleReveal('/contact', useRouter())" class="font-bold italic text-shadow dark:text-shadow-dark">reach out to me</NuxtLink>
+                    <NuxtLink @click="settings.toggleReveal('/contact', useRouter())"
+                        class="font-bold italic text-shadow dark:text-shadow-dark">reach out to me</NuxtLink>
                     anytime,
                     and I'll be happy to discuss
                     how we can work
@@ -55,20 +60,26 @@
     </GridThreeQuarters>
 
     <GridFull id="motto" class="bg-[#f0f0f0] dark:bg-[#12151A]">
-        <h6 data-aos="fade-down" data-aos-duration="1000" class="text-gray-900 dark:text-gray-400 text-[11px] font-thin tracking-[.4em]">/
+        <h6 data-aos="fade-down" data-aos-duration="1000"
+            class="text-gray-900 dark:text-gray-400 text-[11px] tracking-[.4em]">/
             MOTTO</h6>
-        <h2 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" class="mt-10 md:mt-16 md:px-64 leading-10 md:leading-normal mx-auto">The only way to do great
+        <h2 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200"
+            class="mt-10 md:mt-16 md:px-64 leading-10 md:leading-normal mx-auto">The only way to do great
             work is to love what you do.</h2>
-        <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400" class="italic text-[12px] mt-3 text-gray-600 dark:text-gray-400">-
+        <p data-aos="fade-up" data-aos-duration="1000" data-aos-delay="400"
+            class="italic text-[12px] mt-3 text-gray-600 dark:text-gray-400">-
             Steve Jobs -</p>
     </GridFull>
 
     <GridThreeQuarters id="toolbox">
-        <h6 data-aos="fade-right" data-aos-duration="1000" class="text-gray-900 dark:text-gray-400 text-[11px] font-thin tracking-[.4em]">/
+        <h6 data-aos="fade-right" data-aos-duration="1000"
+            class="text-gray-900 dark:text-gray-400 text-[11px] tracking-[.4em]">/
             TOOLBOX</h6>
         <div class="col-span-3">
-            <h2 data-aos="fade-left" data-aos-duration="1000" class="mt-8 md:mt-0 mb-2 md:mb-1 leading-10 md:leading-normal">Take a peek at my superpowers!</h2>
-            <p data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200" class="mb-10 text-gray-600 dark:text-gray-400">
+            <h2 data-aos="fade-left" data-aos-duration="1000"
+                class="mt-8 md:mt-0 mb-2 md:mb-1 leading-10 md:leading-normal">Take a peek at my superpowers!</h2>
+            <p data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200"
+                class="mb-10 text-gray-600 dark:text-gray-400">
                 Unleashing programming expertise to bring ideas to life.</p>
             <div data-aos="fade-left" data-aos-duration="1000" data-aos-delay="400">
                 <div class="border border-[#3a3a3a] p-7 overflow-hidden transition-all duration-700 ease"
@@ -85,21 +96,27 @@
 
                     <div class="grid grid-cols-1">
                         <Transition name="toolboxItem">
-                            <div class="grid grid-cols-2 md:grid-cols-5 gap-8 relative col-start-1 row-start-1" v-if="showToolbox">
-                                <template v-for="tool in toolbox.getSkills" :key="tool.id">
+                            <div class="grid grid-cols-2 md:grid-cols-5 gap-8 relative col-start-1 row-start-1"
+                                v-if="showToolbox">
+                                <template v-for="tool in getSkills">
                                     <div class="flex flex-col text-center w-20 mx-auto items-center">
-                                        <div class="w-full h-full" v-html="colorMode == 'dark' ? tool.logo_dark : tool.logo_light"></div>
-                                        <h6 class="mt-3">{{ tool.name }}</h6>
+                                        <div class="w-full h-full"
+                                            v-html="colorMode == 'dark' ? tool.attributes.logo_dark : tool.attributes.logo_light">
+                                        </div>
+                                        <h6 class="mt-3">{{ tool.attributes.name }}</h6>
                                     </div>
                                 </template>
                             </div>
                         </Transition>
                         <Transition name="toolboxItem">
-                            <div class="grid grid-cols-2 md:grid-cols-5 gap-8 relative col-start-1 row-start-1" v-if="!showToolbox">
-                                <template v-for="tool in toolbox.getTools" :key="tool.id">
+                            <div class="grid grid-cols-2 md:grid-cols-5 gap-8 relative col-start-1 row-start-1"
+                                v-if="!showToolbox">
+                                <template v-for="tool in getTools">
                                     <div class="flex flex-col text-center w-20 mx-auto items-center">
-                                        <div class="w-full h-full" v-html="colorMode == 'dark' ? tool.logo_dark : tool.logo_light"></div>
-                                        <h6 class="mt-3">{{ tool.name }}</h6>
+                                        <div class="w-full h-full"
+                                            v-html="colorMode == 'dark' ? tool.attributes.logo_dark : tool.attributes.logo_light">
+                                        </div>
+                                        <h6 class="mt-3">{{ tool.attributes.name }}</h6>
                                     </div>
                                 </template>
                             </div>
@@ -112,29 +129,39 @@
 </template>
 
 <script setup>
-import { useToolbox } from '@/stores/Toolbox'
 import { useSettings } from '@/stores/Settings'
 
-const settings = useSettings()
-const colorMode = computed(() => settings.colorMode)
-
-useHead({
-    title: 'Fitri Afiq | About Me',
+const config = useRuntimeConfig()
+const { data: toolbox } = await useFetch(`${config.public.BASE_URL}/api/toolboxes`, {
+    headers: {
+        Authorization: `Bearer ${config.public.API_TOKEN}`
+    }
 })
+
+toolbox.value.data.sort((a, b) => a.id > b.id ? 1 : -1)
+
+const settings = useSettings()
+const colorMode = ref(null)
+
+onMounted(() => {
+    colorMode.value = settings.colorMode
+})
+
+const getSkills = computed(() => toolbox.value.data.filter(tool => tool.attributes.type === 'Skills'))
+const getTools = computed(() => toolbox.value.data.filter(tool => tool.attributes.type === 'Tools'))
+
+const showToolbox = ref(true)
+const toggleToolbox = () => showToolbox.value = !showToolbox.value
+
+useHead({ title: 'About Me - Fitri Afiq', })
 
 const emit = defineEmits([
     'scrollToSection'
 ])
-
-const toolbox = useToolbox()
-const showToolbox = ref(true)
-
-const toggleToolbox = () => {
-    showToolbox.value = !showToolbox.value
-}
 </script>
 
-<style>.toolboxItem-enter-from,
+<style>
+.toolboxItem-enter-from,
 .toolboxItem-leave-to {
     opacity: 0;
     transform: translateY(100%);
@@ -149,4 +176,5 @@ const toggleToolbox = () => {
 .toolboxItem-enter-active,
 .toolboxItem-leave-active {
     transition: all 0.7s ease;
-}</style>
+}
+</style>
