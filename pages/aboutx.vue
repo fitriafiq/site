@@ -4,11 +4,11 @@
         <hr data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="200" class="my-10 border-gray-500">
         <div data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400"
             class="flex flex-wrap md:flex-nowrap justify-center gap-x-6 gap-y-3 text-gray-900 dark:text-gray-400 text-sm">
-            <a class="basis-2/4 md:basis-0" href="#story">STORY</a>
+            <a class="basis-2/4 md:basis-0 cursor-none" href="#story">STORY</a>
             <span class="hidden md:block">•</span>
-            <a class="basis-2/4 md:basis-0" href="#motto">MOTTO</a>
+            <a class="basis-2/4 md:basis-0 cursor-none" href="#motto">MOTTO</a>
             <span class="hidden md:block">•</span>
-            <a class="basis-2/4 md:basis-0" href="#toolbox">TOOLBOX</a>
+            <a class="basis-2/4 md:basis-0 cursor-none" href="#toolbox">TOOLBOX</a>
         </div>
     </Hero>
 
@@ -24,7 +24,7 @@
                 Pronunciation: FIT-ree AH-feek</p>
             <div data-aos="fade-left" data-aos-duration="1000" data-aos-delay="400">
                 <p class="mb-6">Heyya! I'm Fitri, a full-stack web developer based in Malaysia.
-                    Currently, I'm part of <a class="font-bold italic text-shadow dark:text-shadow-dark"
+                    Currently, I'm part of <a class="font-bold italic text-shadow dark:text-shadow-dark cursor-none"
                         href="https://gravitas.my/" target="_blank">Gravitas
                         Digital</a> as a senior web developer. I've been tinkering with code and
                     building websites for as long as I can remember, and I love using my skills to bring ideas to life and
@@ -47,7 +47,7 @@
                     my normal working hours, and during weekends. I am always eager to take on new challenges and expand my
                     skill set, which is why I am open to collaborating on exciting freelance projects.</p>
                 <p>If you're looking for a dedicated web developer who can bring your ideas to life, let's connect! You can
-                    <NuxtLink @click="settings.toggleReveal('/contact', useRouter())"
+                    <NuxtLink @click="settings.navigateMenu('/contact')"
                         class="font-bold italic text-shadow dark:text-shadow-dark">reach out to me</NuxtLink>
                     anytime,
                     and I'll be happy to discuss
@@ -83,7 +83,7 @@
                 Unleashing programming expertise to bring ideas to life.</p>
             <div data-aos="fade-left" data-aos-duration="1000" data-aos-delay="400">
                 <div class="border border-[#3a3a3a] p-7 overflow-hidden transition-all duration-700 ease"
-                    :class="showToolbox ? 'max-h-[1100px] md:max-h-[540px]' : 'max-h-[420px] md:max-h-[235px]'">
+                    :class="showToolbox ? 'max-h-[1100px] md:max-h-[540px]' : 'max-h-[420px] md:max-h-[380px]'">
                     <div class="flex gap-5 mb-12">
                         <h6 class="tracking-[.4em]">SKILLS</h6>
                         <input @click="toggleToolbox"
@@ -94,27 +94,33 @@
                             TOOLS</h6>
                     </div>
 
-                    <div class="grid grid-cols-1">
-                        <Transition name="toolboxItem">
-                            <div class="grid grid-cols-2 md:grid-cols-5 gap-8 relative col-start-1 row-start-1"
+                    <div class="grid">
+                        <Transition enter-active-class="ease duration-700 transition delay-300"
+                            enter-from-class="translate-x-[-100%] opacity-0" enter-to-class="translate-x-0 opacity-100"
+                            leave-active-class="transition ease duration-700" leave-from-class="translate-x-0 opacity-100"
+                            leave-to-class="translate-x-[-100%] opacity-0">
+                            <div class="grid grid-cols-2 md:grid-cols-5 gap-8 relative col-start-1 row-start-1 h-max"
                                 v-if="showToolbox">
                                 <template v-for="tool in getSkills">
                                     <div class="flex flex-col text-center w-20 mx-auto items-center">
                                         <div class="w-full h-full"
-                                            v-html="colorMode == 'dark' ? tool.attributes.logo_dark : tool.attributes.logo_light">
+                                            v-html="colorMode === 'dark' ? tool.attributes.logo.logo_dark : tool.attributes.logo.logo_light">
                                         </div>
                                         <h6 class="mt-3">{{ tool.attributes.name }}</h6>
                                     </div>
                                 </template>
                             </div>
                         </Transition>
-                        <Transition name="toolboxItem">
-                            <div class="grid grid-cols-2 md:grid-cols-5 gap-8 relative col-start-1 row-start-1"
+                        <Transition enter-active-class="ease duration-700 transition delay-300"
+                            enter-from-class="translate-x-[100%] opacity-0" enter-to-class="translate-x-0 opacity-100"
+                            leave-active-class="transition ease duration-700" leave-from-class="translate-x-0 opacity-100"
+                            leave-to-class="translate-x-[100%] opacity-0">
+                            <div class="grid grid-cols-2 md:grid-cols-5 gap-8 relative col-start-1 row-start-1 h-max"
                                 v-if="!showToolbox">
                                 <template v-for="tool in getTools">
                                     <div class="flex flex-col text-center w-20 mx-auto items-center">
                                         <div class="w-full h-full"
-                                            v-html="colorMode == 'dark' ? tool.attributes.logo_dark : tool.attributes.logo_light">
+                                            v-html="colorMode === 'dark' ? tool.attributes.logo.logo_dark : tool.attributes.logo.logo_light">
                                         </div>
                                         <h6 class="mt-3">{{ tool.attributes.name }}</h6>
                                     </div>
@@ -132,7 +138,7 @@
 import { useSettings } from '@/stores/Settings'
 
 const config = useRuntimeConfig()
-const { data: toolbox } = await useFetch(`${config.public.BASE_URL}/api/toolboxes`, {
+const { data: toolbox } = await useFetch(`${config.public.BASE_URL}/api/toolboxes?populate[0]=logo`, {
     headers: {
         Authorization: `Bearer ${config.public.API_TOKEN}`
     }
@@ -143,7 +149,7 @@ toolbox.value.data.sort((a, b) => a.id > b.id ? 1 : -1)
 const settings = useSettings()
 const colorMode = ref(null)
 
-onMounted(() => {
+onMounted(async () => {
     colorMode.value = settings.colorMode
 })
 
@@ -155,26 +161,56 @@ const toggleToolbox = () => showToolbox.value = !showToolbox.value
 
 useHead({ title: 'About Me - Fitri Afiq', })
 
-const emit = defineEmits([
-    'scrollToSection'
-])
+const emit = defineEmits(['scrollToSection'])
+
+watch(() => settings.colorMode, () => {
+    console.log(colorMode.value)
+    colorMode.value = colorMode.value !== null ? settings.colorMode : null
+    console.log(colorMode.value)
+})
+
 </script>
 
 <style>
-.toolboxItem-enter-from,
-.toolboxItem-leave-to {
+.skillsItem-enter-from,
+.skillsItem-leave-to {
     opacity: 0;
-    transform: translateY(100%);
+    transform: translateX(-100%);
 }
 
-.toolboxItem-enter-to,
-.toolboxItem-leave-from {
+.skillsItem-enter-to,
+.skillsItem-leave-from {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(0);
 }
 
-.toolboxItem-enter-active,
-.toolboxItem-leave-active {
+.skillsItem-enter-active {
+    transition: all 0.7s ease;
+    transition-delay: 0.3s;
+}
+
+.skillsItem-leave-active {
+    transition: all 0.7s ease;
+}
+
+.toolsItem-enter-from,
+.toolsItem-leave-to {
+    opacity: 0;
+    transform: translateX(100%);
+}
+
+.toolsItem-enter-to,
+.toolsItem-leave-from {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.toolsItem-enter-active {
+    transition: all 0.7s ease;
+    transition-delay: 0.3s;
+}
+
+.toolsItem-leave-active {
     transition: all 0.7s ease;
 }
 </style>

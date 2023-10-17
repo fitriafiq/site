@@ -4,9 +4,9 @@
         <hr data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="200" class="my-10 border-gray-500">
         <div data-aos="fade-up" data-aos-duration="1500" data-aos-delay="400"
             class="flex flex-wrap md:flex-nowrap justify-center gap-x-6 gap-y-3 text-gray-900 dark:text-gray-400 text-sm">
-            <a class="basis-2/4 md:basis-0" href="#portfolio">PORTFOLIO</a>
+            <a class="basis-2/4 md:basis-0 cursor-none" href="#portfolio">PORTFOLIO</a>
             <span class="hidden md:block">•</span>
-            <a class="basis-2/4 md:basis-0" href="#workflow">WORKFLOW</a>
+            <a class="basis-2/4 md:basis-0 cursor-none" href="#workflow">WORKFLOW</a>
         </div>
     </Hero>
 

@@ -6,6 +6,7 @@ export default defineNuxtConfig({
         '@nuxtjs/tailwindcss',
         'nuxt-icon',
         '@pinia/nuxt',
+        'nuxt-swiper'
     ],
     app: {
         head: {

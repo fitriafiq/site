@@ -1,5 +1,5 @@
 <template>
-    <Hero chevronLink="#about">
+    <!-- <Hero chevronLink="#about">
         <p data-aos="fade-down" data-aos-duration="1000" class="mb-3">Hi, I'm Fitri</p>
         <h1 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" class="leading-tight md:leading-normal">Web
             Developer</h1>
@@ -15,7 +15,7 @@
                 class="text-gray-900 dark:text-gray-400 text-[11px] tracking-[.4em]">/
                 ABOUT ME</h6>
             <video data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" class="block md:hidden my-8" autoplay
-                loop playsinline muted :src="colorMode == 'dark' ? greetingDarkPath : greetingLightPath"></video>
+                loop playsinline muted :src="colorMode === 'dark' ? greetingDarkPath : greetingLightPath"></video>
             <h2 data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200"
                 class="md:mt-16 leading-10 md:leading-normal">Programming geek based in
                 Malaysia.</h2>
@@ -26,12 +26,12 @@
                 With a keen eye for aesthetics and a knack for creating visually appealing websites, I love bringing
                 creative ideas to life through innovative web solutions.</p>
             <div data-aos="fade-right" data-aos-duration="1000" data-aos-delay="600">
-                <button @click="settings.toggleReveal('/about', useRouter())">EXPLORE</button>
+                <button @click="settings.navigateMenu('/about')">EXPLORE</button>
             </div>
         </div>
         <div class="justify-end ps-16 hidden md:flex">
             <video data-aos="fade-up" data-aos-duration="1000" data-aos-delay="800" autoplay loop playsinline muted
-                :src="colorMode == 'dark' ? greetingDarkPath : greetingLightPath"></video>
+                :src="colorMode === 'dark' ? greetingDarkPath : greetingLightPath"></video>
         </div>
     </GridHalf>
 
@@ -104,19 +104,26 @@
             </p>
             <Portfolio layout="full" />
         </div>
-    </GridThreeQuarters>
+    </GridThreeQuarters> -->
+
+    <BlockManager :content="content" :global="global" />
+
 </template>
 
 <script setup>
-import greetingDarkPath from '@/assets/videos/greeting-dark.webm';
-import greetingLightPath from '@/assets/videos/greeting-light.webm';
-import { Icon } from '#components';
-import { useSettings } from '@/stores/Settings'
+const config = useRuntimeConfig()
 
-const settings = useSettings()
-const colorMode = computed(() => settings.colorMode)
+const { data: content } = await useFetch(`${config.public.BASE_URL}/api/pages?filters[slug][$eq]=/
+&populate[block][populate]=anchor,background,intro,button,visual.visual_light,visual.visual_dark
+&populate[hero][populate][anchor][populate]=*&populate[hero][populate][background][populate]=*`, {
+    headers: {
+        Authorization: `Bearer ${config.public.API_TOKEN}`
+    }
+})
 
-definePageMeta({
-    name: 'Home'
+const { data: global } = await useFetch(`${config.public.BASE_URL}/api/global?populate=logo.logo_light,logo.logo_dark,contact_cta.intro,contact_cta.button,footer,menu`, {
+    headers: {
+        Authorization: `Bearer ${config.public.API_TOKEN}`
+    }
 })
 </script>
