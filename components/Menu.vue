@@ -4,22 +4,10 @@
         <ul
             class="fixed translate-x-0 -translate-y-2/4 w-full text-center text-[calc(2vw_+_10px)] font-extralight cursor-pointer top-2/4 flex items-center flex-col gap-10">
             <template v-for="menu in props.menu">
-                <li @click="emit('navigateMenu', $event, menu.href)"
+                <li @click="emit('navigateMenu', $event, menu.url)"
                     class="nav-item relative inline-block opacity-0 translate-x-0 translate-y-full nav-item-transition after:content-[''] after:absolute after:w-full after:h-px after:bg-black dark:after:bg-white after:transition-transform after:duration-300 after:scale-x-0 after:bottom-0 after:inset-x-0 hover:after:scale-x-100">
                     {{ menu.label }}</li>
             </template>
-            <!-- <NuxtLink @click="emit('toggleMenu', $event)" to="/"
-                class="nav-item relative inline-block opacity-0 translate-x-0 translate-y-full nav-item-transition after:content-[''] after:absolute after:w-full after:h-px after:bg-black dark:after:bg-white after:transition-transform after:duration-300 after:scale-x-0 after:bottom-0 after:inset-x-0 hover:after:scale-x-100">
-                HOME</NuxtLink>
-            <NuxtLink @click="emit('toggleMenu', $event)" to="/about"
-                class="nav-item relative inline-block opacity-0 translate-x-0 translate-y-full nav-item-transition after:content-[''] after:absolute after:w-full after:h-px after:bg-black dark:after:bg-white after:transition-transform after:duration-300 after:scale-x-0 after:bottom-0 after:inset-x-0 hover:after:scale-x-100">
-                ABOUT</NuxtLink>
-            <NuxtLink @click="emit('toggleMenu', $event)" to="/work"
-                class="nav-item relative inline-block opacity-0 translate-x-0 translate-y-full nav-item-transition after:content-[''] after:absolute after:w-full after:h-px after:bg-black dark:after:bg-white after:transition-transform after:duration-300 after:scale-x-0 after:bottom-0 after:inset-x-0 hover:after:scale-x-100">
-                WORK</NuxtLink>
-            <NuxtLink @click="emit('toggleMenu', $event)" to="/contact"
-                class="nav-item relative inline-block opacity-0 translate-x-0 translate-y-full nav-item-transition after:content-[''] after:absolute after:w-full after:h-px after:bg-black dark:after:bg-white after:transition-transform after:duration-300 after:scale-x-0 after:bottom-0 after:inset-x-0 hover:after:scale-x-100">
-                CONTACT</NuxtLink> -->
         </ul>
     </div>
 </template>

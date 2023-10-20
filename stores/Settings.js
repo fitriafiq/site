@@ -7,7 +7,7 @@ export const useSettings = defineStore('settings', () => {
     const navigateMenu = (url, menu = false) => {
         const delay = ref(700)
 
-        !menu ? reveal.value = !reveal.value : delay.value = 400
+        !menu ? reveal.value = !reveal.value : delay.value = 300
 
         setTimeout(async () => {
             await navigateTo({ path: url })
@@ -15,9 +15,9 @@ export const useSettings = defineStore('settings', () => {
     }
 
     const toggleColorMode = () => {
-        colorMode.value = this.colorMode === 'dark' ? 'light' : 'dark'
-        localStorage.setItem('theme', this.colorMode)
-        document.documentElement.classList.toggle('dark', this.colorMode === 'dark')
+        colorMode.value = colorMode.value === 'dark' ? 'light' : 'dark'
+        localStorage.setItem('theme', colorMode.value)
+        document.documentElement.classList.toggle('dark', colorMode.value === 'dark')
     }
 
     const initializeColorMode = () => {

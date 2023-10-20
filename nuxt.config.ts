@@ -6,22 +6,23 @@ export default defineNuxtConfig({
         '@nuxtjs/tailwindcss',
         'nuxt-icon',
         '@pinia/nuxt',
-        'nuxt-swiper'
+        'nuxt-swiper',
     ],
-    app: {
-        head: {
-            title: 'Fitri Afiq - Web Developer',
-            meta: [
-                {
-                    name: 'description',
-                    content: 'Welcome to my portfolio website! Here you\'ll find a showcase of my skills and experience, as well as a brief overview of my resume. Explore my portfolio to see examples of my work and get in touch to discuss your next project!'
-                }
-            ]
-        }
-    },
+    // app: {
+    //     head: {
+    //         title: 'Fitri Afiq - Web Developer',
+    //         meta: [
+    //             {
+    //                 name: 'description',
+    //                 content: 'Welcome to my personal website! Here you\'ll find a showcase of my skills and experience, as well as a brief overview of my resume. Explore my portfolio to see examples of my work and get in touch to discuss your next project!'
+    //             }
+    //         ]
+    //     }
+    // },
     runtimeConfig: {
         public: {
             BASE_URL: process.env.BASE_URL,
+            API_URL: process.env.API_URL,
             API_TOKEN: process.env.API_TOKEN,
         },
         MAIL_HOST: process.env.MAIL_HOST,

@@ -2,17 +2,23 @@
     <Menu @navigateMenu="navigateMenu" :menu="props.menu" />
     <header class="fixed w-full z-10 bg-[#fdfdfd]/10 dark:bg-[#191c22]/10 backdrop-blur">
         <div class="container flex items-center justify-between my-3">
-            <Transition name="header-left">
+            <Transition enter-active-class="ease duration-[1500ms] transition"
+                enter-from-class="opacity-0 transform translate-x-[-100%]"
+                enter-to-class="opacity-100 transform translate-x-0" leave-active-class="transition ease duration-[1500ms]"
+                leave-from-class="translate-x-0 opacity-100" leave-to-class="translate-x-[-100%] opacity-0">
                 <NuxtLink v-show="colorMode !== null" @click="toggleMenu($event, true)"
                     class="flex items-center gap-x-4 text-[1.4rem] font-semibold">
                     <img class="w-14"
-                        :src="colorMode === 'dark' ? config.public.BASE_URL + props.logo.logo_dark.data.attributes.url : config.public.BASE_URL + props.logo.logo_light.data.attributes.url"
+                        :src="colorMode === 'dark' ? config.public.API_URL + props.logo.logo_dark.data.attributes.url : config.public.API_URL + props.logo.logo_light.data.attributes.url"
                         alt="logo">FITRIAFIQ
                 </NuxtLink>
             </Transition>
-            <Transition name="header-right">
+            <Transition enter-active-class="ease duration-[1500ms] transition"
+                enter-from-class="opacity-0 transform translate-x-[100%]"
+                enter-to-class="opacity-100 transform translate-x-0" leave-active-class="transition ease duration-[1500ms]"
+                leave-from-class="translate-x-0 opacity-100" leave-to-class="translate-x-[100%] opacity-0">
                 <div class="flex items-center" v-show="colorMode !== null">
-                    <div class=" me-3 md:me-0">
+                    <div class="color-mode me-3 md:me-0">
                         <Icon @click="settings.toggleColorMode()" :name="colorMode === 'dark' ? 'ion:moon' : 'ion:sunny'"
                             size="20" />
                     </div>
@@ -30,7 +36,6 @@
 </template>
 
 <script setup>
-import { Icon } from '#components';
 import { useSettings } from '@/stores/Settings'
 
 const props = defineProps(['logo', 'page', 'menu'])
@@ -57,35 +62,9 @@ const toggleMenu = (event, logo = false) => {
     }
 }
 
-const navigateMenu = (event, href) => {
+const navigateMenu = (event, url) => {
+    iconMenu.value.classList.toggle('animate')
     event.target.closest('body').classList.remove('nav-active')
-    settings.navigateMenu(href, true)
+    settings.navigateMenu(url, true)
 }
 </script>
-
-<style>
-.header-left-enter-from {
-    opacity: 0;
-    transform: translateX(-100%);
-}
-
-.header-left-enter-to {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.header-right-enter-from {
-    opacity: 0;
-    transform: translateX(100%);
-}
-
-.header-right-enter-to {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-.header-left-enter-active,
-.header-right-enter-active {
-    transition: all 1.5s ease;
-}
-</style>

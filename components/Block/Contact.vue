@@ -6,7 +6,7 @@
                 {{ props.content.intro.label }}</h6>
             <video data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1200" class="block md:hidden my-8" autoplay
                 loop playsinline muted
-                :src="colorMode === 'dark' ? config.public.BASE_URL + props.content.visual.visual_dark.data.attributes.url : config.public.BASE_URL + props.content.visual.visual_light.data.attributes.url"></video>
+                :src="colorMode === 'dark' ? config.public.API_URL + props.content.visual.visual_dark.data.attributes.url : config.public.API_URL + props.content.visual.visual_light.data.attributes.url"></video>
             <h2 data-aos="fade-right" data-aos-duration="1000" data-aos-delay="300"
                 class="mt-8 md:mt-16 mb-2 md:mb-5 leading-10 md:leading-normal">{{ props.content.intro.title }}
             </h2>
@@ -24,18 +24,18 @@
                     class="w-full leading-normal pb-1 px-1 border-b border-gray-500 bg-transparent focus:outline-none placeholder:tracking-[.4em] placeholder:text-xs placeholder:text-center placeholder:pt-8"
                     v-model="sender.message" placeholder="UNLEASH YOUR THOUGHTS"></textarea>
 
-                <h6 class="text-[11px] my-6">This site is protected by reCAPTCHA and the Google <a
+                <h6 class="text-[11px] my-6">This site is protected by reCAPTCHA and the Google <NuxtLink
                         class="font-bold italic text-shadow dark:text-shadow-dark cursor-none"
-                        href="https://policies.google.com/privacy">Privacy
-                        Policy</a> and <a class="font-bold italic text-shadow dark:text-shadow-dark cursor-none"
-                        href="https://policies.google.com/terms">Terms of Service</a>
+                        to="https://policies.google.com/privacy">Privacy
+                        Policy</NuxtLink> and <NuxtLink class="font-bold italic text-shadow dark:text-shadow-dark cursor-none"
+                        to="https://policies.google.com/terms">Terms of Service</NuxtLink>
                     apply. </h6>
                 <button type="submit" :disabled="disableBtn">{{ submitText }}</button>
             </form>
         </div>
         <div class="justify-end ps-16 hidden md:flex">
             <video data-aos="fade-up" data-aos-duration="1000" data-aos-delay="1200" autoplay loop playsinline muted
-                :src="colorMode === 'dark' ? config.public.BASE_URL + props.content.visual.visual_dark.data.attributes.url : config.public.BASE_URL + props.content.visual.visual_light.data.attributes.url"></video>
+                :src="colorMode === 'dark' ? config.public.API_URL + props.content.visual.visual_dark.data.attributes.url : config.public.API_URL + props.content.visual.visual_light.data.attributes.url"></video>
         </div>
     </GridHalf>
 </template>
@@ -48,7 +48,7 @@ const config = useRuntimeConfig()
 const settings = useSettings()
 const colorMode = ref(null)
 
-onMounted(async () => {
+onMounted(() => {
     colorMode.value = settings.colorMode
 })
 

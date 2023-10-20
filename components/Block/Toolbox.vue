@@ -67,7 +67,10 @@ import { useSettings } from '@/stores/Settings'
 
 const props = defineProps(['content'])
 const config = useRuntimeConfig()
-const { data: toolbox } = await useFetch(`${config.public.BASE_URL}/api/toolboxes?populate[0]=logo`, {
+const settings = useSettings()
+const colorMode = ref(null)
+
+const { data: toolbox } = await useFetch(`${config.public.API_URL}/api/toolboxes?populate[0]=logo`, {
     headers: {
         Authorization: `Bearer ${config.public.API_TOKEN}`
     }
@@ -75,18 +78,15 @@ const { data: toolbox } = await useFetch(`${config.public.BASE_URL}/api/toolboxe
 
 toolbox.value.data.sort((a, b) => a.id > b.id ? 1 : -1)
 
-const settings = useSettings()
-const colorMode = ref(null)
-
-onMounted(async () => {
-    colorMode.value = settings.colorMode
-})
-
 const getSkills = computed(() => toolbox.value.data.filter(tool => tool.attributes.type === 'Skills'))
 const getTools = computed(() => toolbox.value.data.filter(tool => tool.attributes.type === 'Tools'))
 
 const showToolbox = ref(true)
 const toggleToolbox = () => showToolbox.value = !showToolbox.value
+
+onMounted(() => {
+    colorMode.value = settings.colorMode
+})
 
 watch(() => settings.colorMode, () => {
     colorMode.value = colorMode.value !== null ? settings.colorMode : null
