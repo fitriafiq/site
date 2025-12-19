@@ -7,18 +7,33 @@ export default defineNuxtConfig({
         'nuxt-icon',
         '@pinia/nuxt',
         'nuxt-swiper',
+        'nuxt-gtag',
+        'nuxt-simple-sitemap',
+        'nuxt-simple-robots',
     ],
-    // app: {
-    //     head: {
-    //         title: 'Fitri Afiq - Web Developer',
-    //         meta: [
-    //             {
-    //                 name: 'description',
-    //                 content: 'Welcome to my personal website! Here you\'ll find a showcase of my skills and experience, as well as a brief overview of my resume. Explore my portfolio to see examples of my work and get in touch to discuss your next project!'
-    //             }
-    //         ]
-    //     }
-    // },
+    site: {
+        url: process.env.BASE_URL,
+    },
+    sitemap: {
+        urls: [
+            '/',
+            '/about',
+            '/work',
+            '/work/fantasyxchange',
+            '/work/gravitas-digital',
+            '/work/ytl-foundation',
+            '/work/taskly',
+            '/contact',
+        ]
+    },
+    gtag: {
+        id: 'G-XKLDDYRRD2'
+    },
+    app: {
+        head: {
+            link: [{ rel: 'icon', type: 'image/x-icon', href: "/favicon_light.ico" }]
+        }
+    },
     runtimeConfig: {
         public: {
             BASE_URL: process.env.BASE_URL,

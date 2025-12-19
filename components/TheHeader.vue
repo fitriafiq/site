@@ -2,18 +2,18 @@
     <Menu @navigateMenu="navigateMenu" :menu="props.menu" />
     <header class="fixed w-full z-10 bg-[#fdfdfd]/10 dark:bg-[#191c22]/10 backdrop-blur">
         <div class="container flex items-center justify-between my-3">
-            <Transition enter-active-class="ease duration-[1500ms] transition"
+            <Transition :enter-active-class="settings.firstLoad ? 'ease duration-[1500ms] transition' : ''"
                 enter-from-class="opacity-0 transform translate-x-[-100%]"
                 enter-to-class="opacity-100 transform translate-x-0" leave-active-class="transition ease duration-[1500ms]"
                 leave-from-class="translate-x-0 opacity-100" leave-to-class="translate-x-[-100%] opacity-0">
                 <NuxtLink v-show="colorMode !== null" @click="toggleMenu($event, true)"
                     class="flex items-center gap-x-4 text-[1.4rem] font-semibold">
-                    <img class="w-14"
+                    <img width="56" height="56"
                         :src="colorMode === 'dark' ? config.public.API_URL + props.logo.logo_dark.data.attributes.url : config.public.API_URL + props.logo.logo_light.data.attributes.url"
-                        alt="logo">FITRIAFIQ
+                        :alt="colorMode === 'dark' ? props.logo.logo_dark.data.attributes.alternativeText : props.logo.logo_light.data.attributes.alternativeText">FITRIAFIQ
                 </NuxtLink>
             </Transition>
-            <Transition enter-active-class="ease duration-[1500ms] transition"
+            <Transition :enter-active-class="settings.firstLoad ? 'ease duration-[1500ms] transition' : ''"
                 enter-from-class="opacity-0 transform translate-x-[100%]"
                 enter-to-class="opacity-100 transform translate-x-0" leave-active-class="transition ease duration-[1500ms]"
                 leave-from-class="translate-x-0 opacity-100" leave-to-class="translate-x-[100%] opacity-0">

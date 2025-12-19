@@ -26,7 +26,7 @@ export default defineEventHandler(async (event) => {
             html: html
         })
 
-        return `"FITRIAFIQ" <${body.email}>`
+        return 200
     } catch (error) {
         console.log(error);
         return sendError(event, createError({ statusCode: 400, statusMessage: error.toString() }));

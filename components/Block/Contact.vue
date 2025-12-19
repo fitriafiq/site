@@ -11,8 +11,8 @@
                 class="mt-8 md:mt-16 mb-2 md:mb-5 leading-10 md:leading-normal">{{ props.content.intro.title }}
             </h2>
             <form @submit.prevent="sendEmail" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="600"
-                class="mt-5 leading-[2.25]">
-                <p>Hello, my name is &nbsp;<input
+                class="mt-5">
+                <p class="leading-9">Hello, my name is &nbsp;<input
                         class="h-full pb-1 px-1 border-b border-gray-500 bg-transparent text-center focus:outline-none placeholder:tracking-[.4em] placeholder:text-xs"
                         type="text" v-model="sender.name" placeholder="NAME">&nbsp; and I want to
                     discuss a potential
@@ -23,14 +23,9 @@
                 <textarea @input="resizeInput" rows="4"
                     class="w-full leading-normal pb-1 px-1 border-b border-gray-500 bg-transparent focus:outline-none placeholder:tracking-[.4em] placeholder:text-xs placeholder:text-center placeholder:pt-8"
                     v-model="sender.message" placeholder="UNLEASH YOUR THOUGHTS"></textarea>
+                <input class="hidden" name="decoy" v-model="sender.decoy">
 
-                <h6 class="text-[11px] my-6">This site is protected by reCAPTCHA and the Google <NuxtLink
-                        class="font-bold italic text-shadow dark:text-shadow-dark cursor-none"
-                        to="https://policies.google.com/privacy">Privacy
-                        Policy</NuxtLink> and <NuxtLink class="font-bold italic text-shadow dark:text-shadow-dark cursor-none"
-                        to="https://policies.google.com/terms">Terms of Service</NuxtLink>
-                    apply. </h6>
-                <button type="submit" :disabled="disableBtn">{{ submitText }}</button>
+                <button class="mt-10" type="submit" :disabled="disableBtn">{{ submitText }}</button>
             </form>
         </div>
         <div class="justify-end ps-16 hidden md:flex">
@@ -59,7 +54,8 @@ watch(() => settings.colorMode, () => {
 const sender = ref({
     name: '',
     email: '',
-    message: ''
+    message: '',
+    decoy: null
 })
 
 const disableBtn = ref(false)
@@ -67,25 +63,25 @@ const submitText = ref('SUBMIT')
 
 async function sendEmail() {
     try {
-        disableBtn.value = true
-        submitText.value = 'SENDING...'
-        const { data: emailRes, error } = await useFetch(`${window.location.origin}/api/contact`, {
-            method: 'POST',
-            body: sender
-        });
+        if (sender.value.decoy === null) {
+            disableBtn.value = true
+            submitText.value = 'SENDING...'
+            const { data } = await useFetch(`${window.location.origin}/api/contact`, {
+                method: 'POST',
+                body: sender
+            })
 
-        console.log(emailRes.value)
+            if (data.value === 200) {
+                submitText.value = 'MESSAGE HAS BEEN SENT!'
+                sender.value.name = ''
+                sender.value.email = ''
+                sender.value.message = ''
 
-        if (emailRes.value === 200) {
-            submitText.value = 'MESSAGE HAS BEEN SENT!'
-            sender.value.name = ''
-            sender.value.email = ''
-            sender.value.message = ''
-
-            setTimeout(() => {
-                disableBtn.value = false
-                submitText.value = 'SUBMIT'
-            }, 2000)
+                setTimeout(() => {
+                    disableBtn.value = false
+                    submitText.value = 'SUBMIT'
+                }, 2000)
+            }
         }
     } catch (error) {
         console.log(error);

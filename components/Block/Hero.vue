@@ -5,7 +5,7 @@
         <div class="container my-auto text-center">
             <p data-aos="fade-down" data-aos-duration="1000"
                 class="mb-3 text-gray-900 dark:text-gray-400 text-[11px] tracking-[.4em]">{{ props.content.label }}</p>
-            <h1 :class="portfolio !== '' ? 'text-8xl' : ''" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200"
+            <h1 :class="portfolio !== '' ? 'text-4xl md:text-8xl' : ''" data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200"
                 class="leading-tight md:leading-normal">{{
                     props.content.title }}</h1>
             <hr data-aos="zoom-in" data-aos-duration="1500" data-aos-delay="400" class="my-6 border-gray-500">

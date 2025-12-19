@@ -97,6 +97,7 @@ if (!pending.value) {
                 { name: 'twitter:image', content: config.public.API_URL + seo.value.meta_social.image.data.attributes.url },
                 { name: 'keywords', content: seo.value.keywords },
                 { name: 'robots', content: seo.value.meta_robots },
+                { name: 'google-site-verification', content: '7V6JNlneEN93Pw4BOUTGyA7S7KvD2ZmGD_J1_t0tWDE' },
             ],
             script: [
                 { type: 'application/ld+json', innerHTML: JSON.stringify(seo.value.structured_data) },

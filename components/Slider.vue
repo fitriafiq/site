@@ -1,7 +1,7 @@
 <template>
     <Swiper v-bind="swiper">
         <SwiperSlide v-for="slide in props.gallery">
-            <img :src="config.public.API_URL + slide.attributes.url" class="w-screen h-80 md:h-[700px] object-cover">
+            <img :src="config.public.API_URL + slide.attributes.url" :alt="slide.attributes.alternativeText" class="w-screen h-full md:h-[700px] 2xl:h-full object-cover">
         </SwiperSlide>
     </Swiper>
     <div

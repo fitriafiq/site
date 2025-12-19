@@ -4,7 +4,7 @@
             class="text-gray-900 dark:text-gray-400 text-[11px] tracking-[.4em]">/
             {{ props.content.label }}</h6>
         <div class="col-span-3">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-10">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-10 mt-8 md:mt-0">
                 <template v-for="tech in props.content.skill.data">
                     <div class="flex flex-col text-center w-24 mx-auto items-center">
                         <div class="w-full h-full"
